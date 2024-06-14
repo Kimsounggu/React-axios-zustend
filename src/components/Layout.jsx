@@ -7,7 +7,6 @@ const Layout = ({ user, setUser }) => {
   const navigate = useNavigate();
   useEffect(() => {
     getUserInfo().then((res) => {
-      console.log(res);
       if (res) {
         setUser({
           userId: res.id,
@@ -21,6 +20,7 @@ const Layout = ({ user, setUser }) => {
   }, []);
 
   const handleLogout = () => {
+    alert("로그아웃 되었습니다.");
     setUser(null);
     navigate("/Login");
     localStorage.clear();
@@ -28,10 +28,10 @@ const Layout = ({ user, setUser }) => {
   return (
     <>
       <Navbar>
-        <NavItem>
+        <NavItemContainer>
           <NavItem to="/">Home</NavItem>
           <NavItem to="Profile">내 프로필</NavItem>
-        </NavItem>
+        </NavItemContainer>
         <NavItem></NavItem>
         <UserProfile>
           {user && (
@@ -108,4 +108,8 @@ export const LogoutButton = styled.button`
 
 export const PageContainer = styled.div`
   padding: 6rem 2rem; /* Naver heigth */
+`;
+
+export const NavItemContainer = styled.div`
+  display: flex;
 `;
